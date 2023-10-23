@@ -99,3 +99,76 @@ import pyautogui as pg
 
 pg.screenshot('screen.png')
 ```
+
+### Usecase
+```
+1 เปิด Open Webbrowser และไปที่เว็บ Google
+2 พิมพ์ค้นหาในช่อง Search
+3 กด Enter เพื่อเริ่มการค้นหา
+4 Screenshot ผลการค้นหา
+```
+```
+import webbrowser
+import pyautogui as pg
+import time
+import pyperclip
+
+
+# 1 เปิด Open Webbrowser และไปที่เว็บ Google
+url = 'https://www.google.com'
+webbrowser.open(url)
+time.sleep(3)
+
+# 2 พิมพ์ค้นหาในช่อง Search
+keyword = 'Robotic Process Automation'
+pg.write(keyword, interval=0.25)
+
+# keyword = 'หนังเรื่องสัปเหร่อ'
+# pyperclip.copy(keyword)
+# time.sleep(0.5)
+# pg.hotkey('ctrl', 'v')
+# time.sleep(1)
+
+# 3 กด Enter เพื่อเริ่มการค้นหา
+pg.press("enter")
+time.sleep(3)
+
+# 4 Screenshot ผลการค้นหา
+pg.screenshot("screenshot.png")
+```
+
+```
+import webbrowser
+import pyautogui as pg
+import time
+import pyperclip
+
+def search(keyword, eng = False):
+    # 1 เปิด Open Webbrowser และไปที่เว็บ Google
+    url = 'https://www.google.com'
+    webbrowser.open(url)
+    time.sleep(3)
+
+    # 2 พิมพ์ค้นหาในช่อง 
+    if eng == True:
+        #keyword = 'Robotic Process Automation'
+        pg.write(keyword, interval=0.25)
+    else:
+        # keyword = 'หนังเรื่องสัปเหร่อ'
+        pyperclip.copy(keyword)
+        time.sleep(0.5)
+        pg.hotkey('ctrl', 'v')
+        time.sleep(1)
+
+    # 3 กด Enter เพื่อเริ่มการค้นหา
+    pg.press("enter")
+    time.sleep(3)
+
+    # 4 Screenshot ผลการค้นหา
+    pg.screenshot("screenshot.png")
+
+search('หนังเรื่องสัปเหร่อ')
+search('Robotic Process Automation', True)
+```
+
+Reference: https://pyautogui.readthedocs.io/en/latest/ 
